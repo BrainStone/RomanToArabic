@@ -1,0 +1,9 @@
+[submodule "lib/primesieve"]
+	path = lib/primesieve
+	url = https://github.com/kimwalisch/primesieve.git
+[submodule "lib/easylogging"]
+	path = lib/easylogging
+	url = https://github.com/muflihun/easyloggingpp.git
+[submodule "lib/googletest"]
+	path = lib/googletest
+	url = https://github.com/google/googletest.git
