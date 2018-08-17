@@ -10,11 +10,33 @@
 #include "../roman_to_arabic.hpp"
 
 namespace roman_to_arabic {
+	/**
+	 * Exception class for when parsing goes wrong.
+	 *
+	 * This exception class is used for all parsing exceptions of the RomanToArabic lib.<br>
+	 * To simplify exception handling, this exception inherits <code>std::invalid_argument</code>.
+	 *
+	 * The inheritance tree is like follows:
+	 *
+	 * <code>parse_exception -> std::invalid_argument -> std::logic_error -> std::exception</code>
+	 */
 	class parse_exception : public std::invalid_argument {
+		/**
+		 * Create a new instance of this exception with the given message.
+		 *
+		 * @param what_arg: The message of the exception
+		 */
 		explicit parse_exception( const std::string& what_arg );
 
 // C++11 and above
 #if __cplusplus >= 201103L
+		/**
+		 * Create a new instance of this exception with the given message.
+		 *
+		 * This constructor is only available on C++11 or above.
+		 *
+		 * @param what_arg: The message of the exception
+		 */
 		explicit parse_exception( const char* what_arg );
 #endif
 	};
