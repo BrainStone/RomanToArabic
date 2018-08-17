@@ -12,7 +12,7 @@ namespace roman_to_arabic {
 }
 
 // Now the other includes
-#include "roman_to_arabic\convert.hpp"
-#include "roman_to_arabic\parse_exception.hpp"
+#include "roman_to_arabic/convert.hpp"
+#include "roman_to_arabic/parse_exception.hpp"
 
 #endif // #ifndef __ROMAN_TO_ARABIC_HPP__
