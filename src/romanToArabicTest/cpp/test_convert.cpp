@@ -43,3 +43,21 @@ TEST( ConversionTest, Mixed ) {
 
 	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "MDCLXVI" ), 1666 ) );
 }
+
+TEST( ConversionTest, SubtractionSimple ) {
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "IV" ), 4 ) );
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "IX" ), 9 ) );
+
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "XL" ), 40 ) );
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "XC" ), 90 ) );
+
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "CD" ), 400 ) );
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "CM" ), 900 ) );
+}
+
+TEST( ConversionTest, SubtractionMixed ) {
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "XIV" ), 14 ) );
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "DCCIX" ), 709 ) );
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "CDXLIV" ), 444 ) );
+	EXPECT_NO_THROW( EXPECT_EQ( convert_roman_to_arabic( "MCMXCIX" ), 1999 ) );
+}
