@@ -9,7 +9,7 @@ namespace roman_to_arabic {
 		: std::invalid_argument( what_arg ) {}
 
 // C++11 and above
-#if __cplusplus >= 201103L
+#if __ROMAN_TO_ARABIC_CPP11
 	parse_exception::parse_exception( const char* what_arg )
 		: std::invalid_argument( what_arg ) {}
 #endif

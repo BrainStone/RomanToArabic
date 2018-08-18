@@ -29,7 +29,7 @@ namespace roman_to_arabic {
 		explicit parse_exception( const std::string& what_arg );
 
 // C++11 and above
-#if __cplusplus >= 201103L
+#if __ROMAN_TO_ARABIC_CPP11
 		/**
 		 * Create a new instance of this exception with the given message.
 		 *
