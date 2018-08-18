@@ -8,6 +8,20 @@ sudo: required
 matrix:
   include:
     - os: linux
+      env:
+        - BUILD_NAME=GCC-4
+        - MATRIX_EVAL="export CC=gcc && export CXX=g++"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env:
+        - BUILD_NAME=GCC-5
+        - MATRIX_EVAL="export CC=gcc-5 && export CXX=g++-5"
+    - os: linux
       addons:
         apt:
           sources:
@@ -42,14 +56,20 @@ matrix:
           sources:
             - llvm-toolchain-trusty-5.0
           packages:
+            - clang-4.0
+      env:
+        - BUILD_NAME=Clang-4
+        - MATRIX_EVAL="export CC=clang-4.0 && export CXX=clang++-4.0 && sudo apt-get remove gcc g++"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
             - clang-5.0
       env:
         - BUILD_NAME=Clang-5
         - MATRIX_EVAL="export CC=clang-5.0 && export CXX=clang++-5.0 && sudo apt-get remove gcc g++"
-  allow_failures:
-    - env: BUILD_NAME=GCC-6
-    - env: BUILD_NAME=OSX-GCC
-    - env: BUILD_NAME=Clang-5
 
 before_install:
   - eval "${MATRIX_EVAL}"
