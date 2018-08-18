@@ -5,8 +5,51 @@
 #include "roman_to_arabic/convert.hpp"
 
 namespace roman_to_arabic {
+	typedef std::map<char, std::pair<unsigned int, bool>>::const_iterator digit_iterator;
+
+	const digit_iterator out_of_bounds( digits.cend() );
+
 	unsigned int convert_roman_to_arabic( const std::string& roman ) {
-		// TODO: Implement
-		return 0;
+		unsigned int output( 0 );
+		unsigned int last_value( 0 );
+		unsigned int repetitions( 0 );
+		unsigned int ratio;
+
+		for ( size_t i = 0; i < roman.size(); ++i ) {
+			const char letter( roman[i] );
+
+			digit_iterator numeral( digits.find( letter ) );
+
+			if ( numeral == out_of_bounds )
+				throw parse_exception( std::string( "Unknown character \"" ) + letter + "\"" );
+
+			if ( numeral->second.first == last_value )
+				++repetitions;
+			else
+				repetitions = 0;
+
+			if ( repetitions > (numeral->second.second ? 1 : 3) )
+				throw parse_exception( std::string( "Too many repetitions of \"" ) + letter + "\"" );
+
+			if ( ((repetitions == 0) && (last_value != 0)) &&
+				 (numeral->second.first > last_value) ) {
+				// The numeral changed and subtraction is happening
+				ratio = numeral->second.first / last_value;
+
+				if ( ratio == 5 )
+					;
+				else if ( ratio == 10 )
+					;
+				else
+					throw parse_exception( std::string( "Invalid order of nemerals. \"" ) + letter + "\" is not allowed here." );
+			} else {
+				// Same numeral or no subtraction
+				output += numeral->second.first;
+			}
+
+			last_value = numeral->second.first;
+		}
+
+		return output;
 	}
 }

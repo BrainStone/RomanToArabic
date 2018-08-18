@@ -21,6 +21,7 @@ namespace roman_to_arabic {
 	 * <code>parse_exception -> std::invalid_argument -> std::logic_error -> std::exception</code>
 	 */
 	class parse_exception : public std::invalid_argument {
+	public:
 		/**
 		 * Create a new instance of this exception with the given message.
 		 *
