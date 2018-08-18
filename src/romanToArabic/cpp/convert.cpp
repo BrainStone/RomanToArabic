@@ -5,9 +5,15 @@
 #include "roman_to_arabic/convert.hpp"
 
 namespace roman_to_arabic {
+#if __ROMAN_TO_ARABIC_CPP11
 	typedef std::map<char, std::pair<unsigned int, bool> >::const_iterator digit_iterator;
 
 	const digit_iterator out_of_bounds( digits.cend() );
+#else
+	typedef std::map<char, std::pair<unsigned int, bool> >::iterator digit_iterator;
+
+	const digit_iterator out_of_bounds( digits.end() );
+#endif
 
 	unsigned int convert_roman_to_arabic( const std::string& roman ) {
 		unsigned int output( 0 );
