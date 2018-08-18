@@ -11,8 +11,8 @@
 
 namespace roman_to_arabic {
 	namespace implementation {
-		std::map<char, std::pair<unsigned int, bool>> get_digits() {
-			std::map<char, std::pair<unsigned int, bool>> out;
+		std::map<char, std::pair<unsigned int, bool> > get_digits() {
+			std::map<char, std::pair<unsigned int, bool> > out;
 
 			out['I'] = std::make_pair<unsigned int, bool>( 1, false );
 			out['V'] = std::make_pair<unsigned int, bool>( 5, true );
@@ -32,7 +32,7 @@ namespace roman_to_arabic {
 	 * The value is a <code>std::pair<unsigned int, bool></code> that represents the value
 	 * and if the value is 5 value.
 	 */
-	const std::map<char, std::pair<unsigned int, bool>> digits( get_digits() );
+	const std::map<char, std::pair<unsigned int, bool> > digits( get_digits() );
 }
 
 #endif // #ifndef __ROMAN_TO_ARABIC_DIGITS_HPP__
