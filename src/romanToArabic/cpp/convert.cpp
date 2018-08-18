@@ -35,7 +35,7 @@ namespace roman_to_arabic {
 			else
 				repetitions = 0;
 
-			if ( repetitions >= ((was_subtraction || numeral->second.second) ? 1 : 3))
+			if ( repetitions >= ((was_subtraction || numeral->second.second) ? 1 : 3) )
 				throw parse_exception( std::string( "Too many repetitions of \"" ) + letter + "\"" );
 
 			if ( ((repetitions == 0) && (last_value != 0)) &&
@@ -48,7 +48,10 @@ namespace roman_to_arabic {
 					// For example: IV
 					// 1(I) is already added and we want 4. So we need to add 3 (3/5 of V(5)
 					output += numeral->second.first * 3 / 5;
-				else if ( ratio == 10 )
+				else if ( (ratio == 10) && !numeral->second.second )
+					// Don't allow subtraction of 5-values.
+					// The 10 ratio can olny be achieved if the current numeral is not a 5-value
+
 					// Add 8/10 (4/5) of the value
 					// Same reasoning as above
 					output += numeral->second.first * 4 / 5;
