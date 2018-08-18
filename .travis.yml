@@ -29,6 +29,10 @@ matrix:
         - MATRIX_EVAL="export CC=gcc-7 && export CXX=g++-7"
     - os: osx
       osx_image: xcode9.2
+      before_install:
+        - eval "${MATRIX_EVAL}"
+        - $CC --version
+        - $CXX --version
       env:
         - BUILD_NAME=OSX-Clang
         - MATRIX_EVAL="export CC=clang && export CXX=clang++"
@@ -48,7 +52,9 @@ matrix:
     - env: BUILD_NAME=Clang-5
 
 before_install:
-  - eval "${MATRIX_EVAL}" 
+  - eval "${MATRIX_EVAL}"
+  - if [[ $CC == gcc* ]]; then sudo update-alternatives --install $(which gcc) gcc $(which $CC) 100; sudo update-alternatives --install $(which g++) g++ $(which $CXX) 100; fi
+  - if [[ $CC == clang* ]]; then sudo update-alternatives --install $(which clang) clang $(which $CC) 100; sudo update-alternatives --install $(which clang++) clang++ $(which $CXX) 100; fi  
   - $CC --version
   - $CXX --version
 
