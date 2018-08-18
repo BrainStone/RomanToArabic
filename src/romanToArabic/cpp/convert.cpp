@@ -5,7 +5,7 @@
 #include "roman_to_arabic/convert.hpp"
 
 namespace roman_to_arabic {
-	typedef std::map<char, std::pair<unsigned int, bool>>::const_iterator digit_iterator;
+	typedef std::map<char, std::pair<unsigned int, bool> >::const_iterator digit_iterator;
 
 	const digit_iterator out_of_bounds( digits.cend() );
 
