@@ -16,7 +16,7 @@ namespace roman_to_arabic {
 	 * The value is a <code>std::pair<unsigned int, bool></code> that represents the value
 	 * and if the value is 5 value.
 	 */
-	const std::map<char, std::pair<unsigned int, bool>> digits( {
+	const std::map<char, std::pair<unsigned int, bool> > digits( {
 		{ 'I', { 1, false } },
 		{ 'V', { 5, true } },
 		{ 'X', { 10, false } },
