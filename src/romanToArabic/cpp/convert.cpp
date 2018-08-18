@@ -14,6 +14,7 @@ namespace roman_to_arabic {
 		unsigned int last_value( 0 );
 		unsigned int repetitions( 0 );
 		unsigned int ratio;
+		bool was_subtraction( false );
 
 		for ( size_t i = 0; i < roman.size(); ++i ) {
 			const char letter( roman[i] );
@@ -28,7 +29,7 @@ namespace roman_to_arabic {
 			else
 				repetitions = 0;
 
-			if ( repetitions > (numeral->second.second ? 1 : 3) )
+			if ( repetitions > (was_subtraction? 0 : (numeral->second.second ? 1 : 3)) )
 				throw parse_exception( std::string( "Too many repetitions of \"" ) + letter + "\"" );
 
 			if ( ((repetitions == 0) && (last_value != 0)) &&
@@ -37,14 +38,26 @@ namespace roman_to_arabic {
 				ratio = numeral->second.first / last_value;
 
 				if ( ratio == 5 )
-					;
+					// Add 3/5 of the value 
+					// For example: IV
+					// 1(I) is already added and we want 4. So we need to add 3 (3/5 of V(5)
+					output += numeral->second.first * 3 / 5;
 				else if ( ratio == 10 )
-					;
+					// Add 8/10 (4/5) of the value
+					// Same reasoning as above
+					output += numeral->second.first * 4 / 5;
 				else
-					throw parse_exception( std::string( "Invalid order of nemerals. \"" ) + letter + "\" is not allowed here." );
+					throw parse_exception( std::string( "Invalid order of numerals. \"" ) + letter + "\" is not allowed here." );
+
+				was_subtraction = true;
 			} else {
+				if ( (numeral->second.first > last_value) && (last_value != 0) )
+					throw parse_exception( std::string( "Invalid order of numerals. \"" ) + letter + "\" is not allowed here." );
+
 				// Same numeral or no subtraction
 				output += numeral->second.first;
+
+				was_subtraction = false;
 			}
 
 			last_value = numeral->second.first;
