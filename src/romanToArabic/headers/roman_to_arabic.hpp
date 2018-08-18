@@ -9,6 +9,11 @@
  * Main Namespace for the RomanToArabic lib
  */
 namespace roman_to_arabic {
+	/**
+	 * Namespace for internal implementations. You shouldn't use anything out of it!
+	 */
+	namespace implementation {
+	}
 }
 
 /// Visual Studio needs special handling to detect C++11

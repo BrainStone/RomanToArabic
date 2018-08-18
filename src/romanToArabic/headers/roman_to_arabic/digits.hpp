@@ -10,21 +10,29 @@
 #include "../roman_to_arabic.hpp"
 
 namespace roman_to_arabic {
+	namespace implementation {
+		std::map<char, std::pair<unsigned int, bool>> get_digits() {
+			std::map<char, std::pair<unsigned int, bool>> out;
+
+			out['I'] = std::make_pair<unsigned int, bool>( 1, false );
+			out['V'] = std::make_pair<unsigned int, bool>( 5, true );
+			out['X'] = std::make_pair<unsigned int, bool>( 10, false );
+			out['L'] = std::make_pair<unsigned int, bool>( 50, true );
+			out['C'] = std::make_pair<unsigned int, bool>( 100, false );
+			out['D'] = std::make_pair<unsigned int, bool>( 500, true );
+			out['M'] = std::make_pair<unsigned int, bool>( 1000, false );
+
+			return out;
+		}
+	}
+
 	/**
 	 * Mapping of all allowed characters to their values.
 	 *
 	 * The value is a <code>std::pair<unsigned int, bool></code> that represents the value
 	 * and if the value is 5 value.
 	 */
-	const std::map<char, std::pair<unsigned int, bool> > digits( {
-		{ 'I', { 1, false } },
-		{ 'V', { 5, true } },
-		{ 'X', { 10, false } },
-		{ 'L', { 50, true } },
-		{ 'C', { 100, false } },
-		{ 'D', { 500, true } },
-		{ 'M', { 1000, false } },
-	} );
+	const std::map<char, std::pair<unsigned int, bool>> digits( get_digits() );
 }
 
 #endif // #ifndef __ROMAN_TO_ARABIC_DIGITS_HPP__
