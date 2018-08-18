@@ -35,7 +35,7 @@ namespace roman_to_arabic {
 			else
 				repetitions = 0;
 
-			if ( repetitions > (was_subtraction? 0 : (numeral->second.second ? 1 : 3)) )
+			if ( repetitions >= ((was_subtraction || numeral->second.second) ? 1 : 3))
 				throw parse_exception( std::string( "Too many repetitions of \"" ) + letter + "\"" );
 
 			if ( ((repetitions == 0) && (last_value != 0)) &&
