@@ -56,3 +56,17 @@ TEST( ErrorTest, WrongSubtraction ) {
 	EXPECT_THROW( convert_roman_to_arabic( "LM" ), roman_to_arabic::parse_exception );
 	EXPECT_THROW( convert_roman_to_arabic( "DM" ), roman_to_arabic::parse_exception );
 }
+
+TEST( ErrorTest, WrongSubtractionRepetition ) {
+	EXPECT_THROW( convert_roman_to_arabic( "XIXX" ), roman_to_arabic::parse_exception );
+	EXPECT_THROW( convert_roman_to_arabic( "XIXXX" ), roman_to_arabic::parse_exception );
+	EXPECT_THROW( convert_roman_to_arabic( "XXIXX" ), roman_to_arabic::parse_exception );
+
+	EXPECT_THROW( convert_roman_to_arabic( "CXCC" ), roman_to_arabic::parse_exception );
+	EXPECT_THROW( convert_roman_to_arabic( "CXCCC" ), roman_to_arabic::parse_exception );
+	EXPECT_THROW( convert_roman_to_arabic( "CCXCC" ), roman_to_arabic::parse_exception );
+
+	EXPECT_THROW( convert_roman_to_arabic( "MCMM" ), roman_to_arabic::parse_exception );
+	EXPECT_THROW( convert_roman_to_arabic( "MCMMM" ), roman_to_arabic::parse_exception );
+	EXPECT_THROW( convert_roman_to_arabic( "MMCMM" ), roman_to_arabic::parse_exception );
+}
